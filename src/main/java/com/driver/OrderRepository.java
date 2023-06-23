@@ -73,7 +73,7 @@ public class OrderRepository {
             return orderdb.size()- partnerdb.size();
       }
 
-      public Integer getOrdersLeftAfterGivenTimeByPartnerId(int time, String partnerId) {
+      public int getOrdersLeftAfterGivenTimeByPartnerId(int time, String partnerId) {
             int cnt = 0;
             List<String> orders = dpDB.get(partnerId);
 

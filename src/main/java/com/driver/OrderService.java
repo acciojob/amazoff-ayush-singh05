@@ -47,7 +47,7 @@ public class OrderService {
         return or.getCountOfUnassignedOrders();
     }
 
-    public Integer getOrdersLeftAfterGivenTimeByPartnerId(String Dtime, String partnerId) {
+    public int getOrdersLeftAfterGivenTimeByPartnerId(String Dtime, String partnerId) {
         String time[] = Dtime.split(":");
         int newTime = Integer.parseInt(time[0])*60 + Integer.parseInt(time[1]);
 
