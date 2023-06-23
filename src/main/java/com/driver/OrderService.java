@@ -31,7 +31,7 @@ public class OrderService {
         return or.getPartnerById(partnerId);
     }
 
-    public Integer getOrderCountByPartnerId(String partnerId) {
+    public int getOrderCountByPartnerId(String partnerId) {
         return or.getOrderCountByPartnerId(partnerId);
     }
 
@@ -43,7 +43,7 @@ public class OrderService {
         return or.getAllorders();
     }
 
-    public Integer getCountOfUnassignedOrders() {
+    public int getCountOfUnassignedOrders() {
         return or.getCountOfUnassignedOrders();
     }
 
