@@ -14,29 +14,23 @@ public class OrderRepository {
       Map<String ,String> partnerdb = new HashMap<>();
       Map<String, List<String>> dpDB = new HashMap<>();
 
-      public boolean addOrder(Order order) {
+      public void addOrder(Order order) {
             String key = order.getId();
-            if(orderdb.containsKey(key)){
-                  return false;
-            }
+
             orderdb.put(key,order);
-            return true;
+
       }
 
       public void addPartner(String partnerId) {
             DeliveryPartner dp = new DeliveryPartner(partnerId);
-            String key = dp.getId();
-            if(deliverydb.containsKey(key)){
-                  return;
-            }
-            deliverydb.put(key,dp);
+
+            deliverydb.put(partnerId,dp);
       }
 
       public void addOrderPartnerPair(String orderId, String partnerId) {
-            if(partnerdb.containsKey(orderId)){
-                  return;
+            if(orderdb.containsKey(orderId) && deliverydb.containsKey(partnerId)) {
+                  partnerdb.put(orderId, partnerId);
             }
-            partnerdb.put(orderId,partnerId);
             List<String> ol = new ArrayList<>();
 
             if(dpDB.containsKey(partnerId)){
@@ -51,11 +45,9 @@ public class OrderRepository {
 
       public Order getOrderByID(String orderId) {
 
-            if(orderdb.containsKey(orderId)){
+
                   return orderdb.get(orderId);
-            }else{
-                  return null;
-            }
+
       }
 
       public DeliveryPartner getPartnerById(String partnerId) {
@@ -81,7 +73,7 @@ public class OrderRepository {
       }
 
       public Integer getCountOfUnassignedOrders() {
-            return orderdb.size()- deliverydb.size();
+            return orderdb.size()- partnerdb.size();
       }
 
       public Integer getOrdersLeftAfterGivenTimeByPartnerId(int time, String partnerId) {
@@ -114,7 +106,7 @@ public class OrderRepository {
             dpDB.remove(partnerId);
 
             for(String order: listOfOrders){
-                  dpDB.remove(order);
+                  partnerdb.remove(order);
             }
       }
 

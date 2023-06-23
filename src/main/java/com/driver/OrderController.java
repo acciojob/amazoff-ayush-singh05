@@ -23,9 +23,7 @@ public class OrderController {
      OrderService os;
     @PostMapping("/add-order")
     public ResponseEntity<String> addOrder(@RequestBody Order order){
-        if(!os.addOrder(order)) {
-            return new ResponseEntity<>("Already Present",HttpStatus.ALREADY_REPORTED);
-        }
+
             os.addOrder(order);
         return new ResponseEntity<>("New order added successfully", HttpStatus.CREATED);
     }
@@ -49,9 +47,7 @@ public class OrderController {
     public ResponseEntity<Order> getOrderById(@PathVariable String orderId){
 
         Order order= os.getOrderByID(orderId);
-        if(order == null){
-            return new ResponseEntity("Order Not Found!",HttpStatus.NOT_FOUND);
-        }
+
         //order should be returned with an orderId.
 
         return new ResponseEntity<>(order, HttpStatus.CREATED);

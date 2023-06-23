@@ -10,8 +10,9 @@ public class OrderService {
     @Autowired
     OrderRepository or;
 
-    public boolean addOrder(Order order) {
-        return or.addOrder(order);
+    public void addOrder(Order order) {
+
+        or.addOrder(order);
     }
 
     public void addPartner(String partnerId) {
